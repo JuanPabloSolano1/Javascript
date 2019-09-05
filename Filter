@@ -1,0 +1,5 @@
+let array = ["apple","pinneaple","melon","strawberry"]
+let filter = array.map(item => item).filter(item => item.length == 5)
+let final_filter = array.map(item => item).filter(item => item.startsWith("p"))
+let filter_word = array.map(item => item).filter(item => item == "apple")
+let filter_letter = array.map(item => item[0]).filter(item => item)
