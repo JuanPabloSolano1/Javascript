@@ -1,0 +1,144 @@
+!DOCTYPE html>
+<html>
+   <head>
+      <style>
+         .form-group{
+         color: white;
+         padding-top: 20px;
+         width: 500px;
+         margin: 0 auto;
+         }
+         .dropdown{
+         margin-top: 60px;
+         text-align: center;
+         padding-bottom: 80px;
+         }
+         #button{
+         margin-top: 50px
+         }
+         .header{
+         text-align: center;
+         font-family: 'Mansalva', cursive;
+         }
+         .container{
+         margin-top: 50px;
+         background-color: #394a6d;
+         box-shadow: 3px 3px 7px;
+         width: 600px !important;
+         margin-bottom: 30px;
+         height: 650px;
+         }
+         #result{
+         margin-top: 0px;
+         text-align: center;
+         color: white;
+         background-color: black;
+         height: 100px;
+         padding-top: 10px;
+         text-align: center;
+         margin-bottom: 30px;
+         padding-bottom: 20px;
+         border: solid;
+         border-color: white;
+         border-width: thin;
+         }
+         .form-check{
+         padding-top: 30px
+         }
+         .form-check  label{
+         color: white;
+         }
+      </style>
+      <link href="https://fonts.googleapis.com/css?family=Mansalva&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+      <meta charset="utf-8">
+      <title></title>
+   </head>
+   <body>
+      <div class="header">
+         <h1>Calculator</h1>
+      </div>
+      <div class="container">
+         <form>
+            <div class="form-group">
+               <label for="exampleInputEmail1">Enter First Number:</label>
+               <input type="number" class="form-control" id="first_number" aria-describedby="emailHelp" placeholder=>
+            </div>
+            <div class="form-group">
+               <label id="label"for="exampleInputPassword1">Enter Second Number:</label>
+               <input type="number" class="form-control" id="second_number" placeholder=>
+            </div>
+            <div class="text-center">
+               <button id="button" type="submit" class="btn btn-danger">Calculate</button>
+            </div>
+         </form>
+         <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Select Operation
+            </button>
+            <div class="form-check">
+               <input type="checkbox" class="form-check-input" id="materialUnchecked">
+               <label class="form-check-label" for="materialUnchecked">Square Root</label>
+            </div>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+               <p class="dropdown-item" href="#">Adding</p>
+               <p class="dropdown-item" href="#">Substracting</p>
+               <p class="dropdown-item" href="#">Multiplying</p>
+               <p class="dropdown-item" href="#">Dividing</p>
+            </div>
+         </div>
+         <div id="result"></div>
+      </div>
+   </body>
+   <script>
+      const sleep = (milliseconds) => {
+      return new Promise(resolve => setTimeout(resolve, milliseconds))
+      }
+      const doSomething = async () => {
+      await sleep(3000)
+      location.reload(true)
+      }
+      let check = document.querySelectorAll(".dropdown-item")
+      let first_number = document.getElementById("first_number")
+      let second_number = document.getElementById("second_number")
+      let result = document.getElementById("result")
+      let button = document.getElementById("button")
+      let checkbox = document.getElementById("materialUnchecked")
+      let label = document.getElementById("label")
+      checkbox.addEventListener("change",(event)=>{
+        second_number.parentNode.removeChild(second_number)
+        label.parentNode.removeChild(label);
+        button.addEventListener("click",(event)=>{
+          event.preventDefault()
+          result.innerHTML = ''
+          result.insertAdjacentHTML("beforeend",`<h2>${Math.sqrt(parseInt(first_number.value))}</h2>`)
+          doSomething()
+      })
+      })
+      
+        check.forEach(element =>{
+        element.addEventListener("click",(event)=>{
+        event.preventDefault()
+        let operation = element.innerHTML
+      button.addEventListener("click",(event)=>{
+        event.preventDefault()
+        result.innerHTML = ''
+        if (operation == "Adding") {
+          result.insertAdjacentHTML("beforeend",`<h2>${parseInt(first_number.value) + parseInt(second_number.value)}</h2>`)
+        }else if (operation == "Substracting") {
+          result.insertAdjacentHTML("beforeend",`<h2>${parseInt(first_number.value) - parseInt(second_number.value)}</h2>`)
+        }else if (operation == "Multiplying") {
+          result.insertAdjacentHTML("beforeend",`<h2>${parseInt(first_number.value) * parseInt(second_number.value)}</h2>`)
+        }else if(operation == "Dividing"){
+          result.insertAdjacentHTML("beforeend",`<h2>${parseInt(first_number.value) / parseInt(second_number.value)}</h2>`)
+        // }else if(operation == "Square Root"){
+        //   doSomething()
+      }
+      })
+      })
+      })
+   </script>
+</html>
