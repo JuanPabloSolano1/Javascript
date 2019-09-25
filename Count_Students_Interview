@@ -1,0 +1,17 @@
+function countStudents(height) {
+let new_list = []
+height.map(element =>{
+  new_list.push(element)
+})
+
+let final_list = new_list.sort()
+let check_list = []
+for (var i = 0; i < height.length; i++) {
+  if(height[i] !== final_list[i]){
+    check_list.push(i)
+  }
+}
+console.log(check_list.length)
+
+}
+countStudents([1,1,3,1,2])
