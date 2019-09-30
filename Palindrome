@@ -1,0 +1,14 @@
+function palindrome(str) {
+  let solution = str.replace(/\s+/, "")
+  let new_list = []
+  solution.split("").map(element =>{
+    new_list.push(element.toLowerCase())
+  })
+  if(solution.toLowerCase() == new_list.reverse().join("")){
+  return true;
+}else{
+  return false
+}
+}
+
+palindrome("eye");
