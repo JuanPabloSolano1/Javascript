@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+  <select id="city-input" class="select2"></select>
+  </body>
+  <script>
+  const cities = ["Amsterdam","Bali","Barcelona","Belo Horizonte","Berlin","Bordeaux","Brussels","Buenos Aires","Casablanca","Chengdu","Copenhagen","Kyoto","Lausanne","Lille","Lisbon","London","Lyon","Marseille","Melbourne","Mexico","Milan","Montréal","Nantes","Paris","Rio de Janeiro","São Paulo","Shanghai","Shenzhen","Tel Aviv","Tokyo"]
+var select = document.getElementById("city-input");
+for(var i = 0; i < cities.length; i++) {
+    var opt = cities[i];
+    var el = document.createElement("option");
+    el.innerText = opt;
+    select.appendChild(el);
+}
+  </script>
+</html>
